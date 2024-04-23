@@ -5,3 +5,125 @@ body {
     align-items: center;
     background-color: wheat;
 }
+
+.input-container {
+    width:500px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+    margin-bottom:10px;
+    
+}
+
+#input-todo {
+    width:300px;
+    height:30px;
+    font-size: 2rem;
+
+}
+
+#add-todo {
+    width:40px;
+    height:40px;
+    border-radius: 20px;
+    font-size: 2rem;
+    border:none;
+    background-color:coral;
+    cursor:pointer;
+
+}
+
+.todo-container {
+    width:500px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+
+
+}
+
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius:15px;
+    font-size: 1.5rem;
+}
+
+.todo-info {
+    display:flex;
+    margin-left:5px;
+    gap:5px;
+}
+.todo-btn {
+    margin-right:10px;
+}
+.todo-btn >button {
+    font-family:monospace;
+    border:none;
+    font-size:1rem;
+    border-radius:15px;
+    cursor:pointer;
+
+}
+todo-edit {
+    background-color: grey;
+
+}
+todo-delete {
+    background-color: grey;
+}
+.modal-background {
+    /* display: none; */
+    position:fixed;
+    left:0;
+    top:0;
+    z-index: 1;
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal {
+    background-color: white;
+    width:250px;
+    margin:25% auto;
+    border-radius:25px;
+    padding:10px 20px 30px 10px;
+}
+.modal-top {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.close-modal {
+    font-size:2rem;
+    color:grey;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-bottom {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap:10px;
+}
+#edit-todo-name {
+    width:200px;
+    height:25px;
+    font-size:1.2rem;
+}
+#edit-todo-completed-wrapper {
+    font-size:1.2rem;
+}
+#save-todo {
+    background-color:black;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-size: 1.2rem;
+    width:75px;
+    height:30px;
+    border-radius:20px;
+}
