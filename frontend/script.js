@@ -1,6 +1,6 @@
 let btn = document.getElementById("add-todo");
 let title = document.getElementById("input-todo");
-let container = document.getElementById("todo-container").innerHTML;
+let container = document.getElementById("todo-container");
 
 // array for storing data
 let dataArray = [];
@@ -13,13 +13,13 @@ addTodo(value);
 
 function addTodo (value) {
     dataArray.push(value);
-render(dataArray);
+ render(dataArray);
 }
 
 function render(todo) {
     for(let i=0;i<todo.length;i++) {
     let list = todo[i];
-     let create = document.createElement("div");
+     let create = document.createElement("p");
      create.innerHTML = list;
      container.appendchild(create);
     }
