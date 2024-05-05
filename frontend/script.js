@@ -30,4 +30,7 @@ function render(todo) {
   }
 }
 
+addTodo("hello there");
+addTodo("nice");
+addTodo("sab thik");
 
