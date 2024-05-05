@@ -1,7 +1,6 @@
 let btn = document.getElementById("add-todo");
 let title = document.getElementById("input-todo");
 let container = document.getElementById("todo-container");
-let id = 1;
 // array for storing data
 let dataArray = [];
 
@@ -11,7 +10,11 @@ btn.addEventListener("click", () => {
 });
 
 function addTodo(title) {
-  let object = title;
+  let id = Math.floor(Math.random()*1000);
+  let object = {
+    Title : title,
+    Id : id,
+  };
   dataArray.push(object);
   render(dataArray);
 }
@@ -19,11 +22,12 @@ function addTodo(title) {
 function render(todo) {
     container.innerHTML =""
   for (let i = 0; i < todo.length; i++) {
-    let list = todo[i];
+    let list = todo[i].Title;
     let create = document.createElement("p");
     create.innerHTML = list;
+    create.id = todo[i].Id;
     container.append(create);
   }
 }
 
-console.log(render(dataArray));
+
