@@ -30,8 +30,11 @@ function render(todo) {
     container.append(create);
   }
 }
+container.addEventListener("click",() => {
+   
+})
 
-function delete( id )
+function deleteTodo( id )
  {
   let arry =[];
   let index =0;
