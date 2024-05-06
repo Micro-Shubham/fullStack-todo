@@ -31,13 +31,16 @@ function render(todo) {
   }
 }
 
-create.addEventListener("click", () => {
-  for (let i = 0; i < dataArray.length; i++) {
-    if (dataArray[i].id == id) {
-      dataArray.pop();
+function delete( id )
+ {
+  let arry =[];
+  let index =0;
+  for(let i = 0 ;i<dataArray.length; i++) {
+    if(dataArray[i].id != id) {
+      arry[index] = dataArray[i];
+      index++;
     }
-    let arr = [];
-    arr[i] = dataArray[i];
   }
-  render(arr);
-});
+  dataArray = arry;
+  render(dataArray);
+}
