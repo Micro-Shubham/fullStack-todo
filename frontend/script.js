@@ -30,16 +30,18 @@ function render(todo) {
     container.append(create);
   }
 }
-container.addEventListener("click",() => {
-   
-})
+container.addEventListener("click", () => {
+  for (let i = 0; i < dataArray.length; i++) {
+      let getId = dataArray[i].id;
+      deleteTodo(getId);
+  }
+});
 
-function deleteTodo( id )
- {
-  let arry =[];
-  let index =0;
-  for(let i = 0 ;i<dataArray.length; i++) {
-    if(dataArray[i].id != id) {
+function deleteTodo(id) {
+  let arry = [];
+  let index = 0;
+  for (let i = 0; i < dataArray.length; i++) {
+    if (dataArray[i].id != id) {
       arry[index] = dataArray[i];
       index++;
     }
