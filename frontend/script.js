@@ -31,9 +31,13 @@ function render(todo) {
   }
 }
 container.addEventListener("click", () => {
+let p = document.getElementById("p");
+  let getId =p.getAttribute("id")
   for (let i = 0; i < dataArray.length; i++) {
-      let getId = dataArray[i].id;
-      deleteTodo(getId);
+      if(dataArray[i].id == getId) {
+        deleteTodo(getId);
+      }
+
   }
 });
 
