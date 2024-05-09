@@ -1,6 +1,7 @@
 let btn = document.getElementById("add-todo");
 let title = document.getElementById("input-todo");
 let container = document.getElementById("todo-container");
+let ptag = document.querySelectorAll("p");
 // array for storing data
 let dataArray = [];
 
@@ -25,19 +26,21 @@ function render(todo) {
   for (let i = 0; i < todo.length; i++) {
     let list = todo[i].title;
     let create = document.createElement("p");
+    // ptag.setAttribute("id",i);
     create.innerHTML = list;
     create.id = todo[i].id;
     container.append(create);
   }
 }
-container.addEventListener("click", () => {
-let p = document.getElementById("p");
-  let getId =p.getAttribute("id")
-  for (let i = 0; i < dataArray.length; i++) {
-      if(dataArray[i].id == getId) {
-        deleteTodo(getId);
-      }
+// console.log("id", Id);
 
+container.addEventListener("click", (e) => {
+  let getId =e.target.id; 
+  console.log(getId);
+  for (let i = 0; i < dataArray.length; i++) {
+    if (dataArray[i].id == getId) {
+      deleteTodo(getId);
+    }
   }
 });
 
