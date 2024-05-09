@@ -1,7 +1,6 @@
 let btn = document.getElementById("add-todo");
 let title = document.getElementById("input-todo");
 let container = document.getElementById("todo-container");
-let ptag = document.querySelectorAll("p");
 // array for storing data
 let dataArray = [];
 
@@ -26,20 +25,17 @@ function render(todo) {
   for (let i = 0; i < todo.length; i++) {
     let list = todo[i].title;
     let create = document.createElement("p");
-    // ptag.setAttribute("id",i);
     create.innerHTML = list;
     create.id = todo[i].id;
     container.append(create);
   }
 }
-// console.log("id", Id);
 
 container.addEventListener("click", (e) => {
-  let getId =e.target.id; 
-  console.log(getId);
+  let ptag = e.target.id;
   for (let i = 0; i < dataArray.length; i++) {
-    if (dataArray[i].id == getId) {
-      deleteTodo(getId);
+    if (dataArray[i].id == ptag) {
+      deleteTodo(ptag);
     }
   }
 });
