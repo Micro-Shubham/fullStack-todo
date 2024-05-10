@@ -7,6 +7,7 @@ let dataArray = [];
 //click function
 btn.addEventListener("click", () => {
   addTodo(title.value);
+  localStorage.setItem("title", title.value);
   title.value = "";
 });
 
