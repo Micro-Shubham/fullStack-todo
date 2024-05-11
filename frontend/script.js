@@ -36,6 +36,7 @@ container.addEventListener("click", (e) => {
   let ptag = e.target.id;
   for (let i = 0; i < dataArray.length; i++) {
     if (dataArray[i].id == ptag) {
+      localStorage.removeItem(ptag);
       deleteTodo(ptag);
     }
   }
