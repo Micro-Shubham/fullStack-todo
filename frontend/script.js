@@ -7,12 +7,12 @@ let dataArray = [];
 //click function
 btn.addEventListener("click", () => {
   addTodo(title.value);
-  localStorage.setItem("title", title.value);
   title.value = "";
 });
 
 function addTodo(title) {
   let id = Math.floor(Math.random() * 10000 + 1);
+  localStorage.setItem(id, title);
   let object = {
     title: title,
     id: id,
