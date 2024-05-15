@@ -35,18 +35,27 @@ app.put("/edit", function (req, res) {
   }
 });
 //delete route
-app.delete("/delete", (req,res) => {
-  newArr =[]
-  let index = 0 ;
-  let Id = req.body.id;
-  for(let i = 0;i<Array.length;i++) {
-    if(Array[i].id!=Id) {
-     newArr[index] = Array[i];
+app.delete("/:Id", (req, res) => {
+  newArr = [];
+  let index = 0;
+  let Id = req.params;
+  for (let i = 0; i < Array.length; i++) {
+    if (Array[i].id == Id) {
+      if (Array[i].id != Id) {
+        newArr[index] = Array[i];
+      }
+    }
+    else {
+      res.json({
+        msg:"Id does not match"
+      })
     }
   }
   Array = newArr;
   res.json({
-    msg:"successfully deleted task"
-  })
-})
-app.listen(3000);
+    msg: "successfully deleted task",
+  });
+});
+app.listen(3000, () => {
+  console.log(`server is listening at port  ${3000}`)
+});
