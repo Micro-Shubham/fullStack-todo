@@ -34,4 +34,19 @@ app.put("/edit", function (req, res) {
     });
   }
 });
+//delete route
+app.delete("/delete", (req,res) => {
+  newArr =[]
+  let index = 0 ;
+  let Id = req.body.id;
+  for(let i = 0;i<Array.length;i++) {
+    if(Array[i].id!=Id) {
+     newArr[index] = Array[i];
+    }
+  }
+  Array = newArr;
+  res.json({
+    msg:"successfully deleted task"
+  })
+})
 app.listen(3000);
