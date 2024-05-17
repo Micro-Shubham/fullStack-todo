@@ -4,6 +4,7 @@ let container = document.getElementById("todo-container");
 // array for storing data
 let dataArray = [];
 
+  getAllData();
 //click function
 btn.addEventListener("click", () => {
   addTodo(title.value);
@@ -12,7 +13,7 @@ btn.addEventListener("click", () => {
 
 function addTodo(title) {
   let id = Math.floor(Math.random() * 10000 + 1);
-  localStorage.setItem(id, title);
+  // localStorage.setItem(id, title);
   let object = {
     title: title,
     id: id,
@@ -53,4 +54,23 @@ function deleteTodo(id) {
   }
   dataArray = arry;
   render(dataArray);
+}
+
+function getAllData() {
+  const apiUrl = "http://localhost:3005/";
+
+  // Make a GET request
+  fetch(apiUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }

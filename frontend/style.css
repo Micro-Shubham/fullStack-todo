@@ -127,3 +127,14 @@ todo-delete {
     height:30px;
     border-radius:20px;
 }
+
+div.todo-container {
+    margin: 50px, 50px;
+    padding: 50px;
+    background-color: rgb(221, 226, 221);
+    width: 500px;
+    height: 110px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}

@@ -1,5 +1,11 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+  })
+);
 app.use(express.json());
 let Array = [
   {
@@ -40,15 +46,8 @@ app.delete("/:Id", (req, res) => {
   let index = 0;
   let Id = req.params;
   for (let i = 0; i < Array.length; i++) {
-    if (Array[i].id == Id) {
-      if (Array[i].id != Id) {
-        newArr[index] = Array[i];
-      }
-    }
-    else {
-      res.json({
-        msg:"Id does not match"
-      })
+    if (Array[i].id != Id) {
+      newArr[index] = Array[i];
     }
   }
   Array = newArr;
@@ -56,6 +55,6 @@ app.delete("/:Id", (req, res) => {
     msg: "successfully deleted task",
   });
 });
-app.listen(3000, () => {
-  console.log(`server is listening at port  ${3000}`)
+app.listen(3005, () => {
+  console.log(`server is listening at port  ${3005}`);
 });
