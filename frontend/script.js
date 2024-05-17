@@ -57,7 +57,7 @@ function deleteTodo(id) {
 }
 
 function getAllData() {
-  const apiUrl = "http://localhost:3005/";
+  const apiUrl = "http://localhost:3010/";
 
   // Make a GET request
   fetch(apiUrl)

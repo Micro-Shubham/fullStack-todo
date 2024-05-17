@@ -55,6 +55,6 @@ app.delete("/:Id", (req, res) => {
     msg: "successfully deleted task",
   });
 });
-app.listen(3005, () => {
-  console.log(`server is listening at port  ${3005}`);
+app.listen(3010, () => {
+  console.log(`server is listening at port  ${3010}`);
 });

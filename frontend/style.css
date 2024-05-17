@@ -139,4 +139,5 @@ div.todo-container {
     overflow-x: hidden;
     overflow-y: auto;
     text-align: justify;
+    border-radius:20px;
 }
