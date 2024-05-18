@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
   res.json(Array);
 });
 app.post("/add", (req, res) => {
+  console.log("post working")
   let add = {
     title: req.body.title,
     id: Math.floor(Math.random() * 1000),

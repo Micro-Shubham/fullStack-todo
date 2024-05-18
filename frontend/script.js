@@ -81,7 +81,7 @@ function postData() {
   const apiUrl = 'http://localhost:3010/';
 const data = {
   name: 'John Doe',
-  email: 'johndoe@example.com',
+  id:2,
 };
 
 const requestOptions = {
