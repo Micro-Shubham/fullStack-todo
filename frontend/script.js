@@ -9,6 +9,7 @@ let dataArray = [];
 btn.addEventListener("click", () => {
   addTodo(title.value);
   title.value = "";
+  postData()
 });
 
 function addTodo(title) {
@@ -74,3 +75,37 @@ function getAllData() {
       console.error("Error:", error);
     });
 }
+
+//post request 
+function postData() {
+  const apiUrl = 'http://localhost:3010/';
+const data = {
+  name: 'John Doe',
+  email: 'johndoe@example.com',
+};
+
+const requestOptions = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+};
+
+fetch(apiUrl, requestOptions)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    outputElement.textContent = JSON.stringify(data, null, 2);
+  })
+  .catch(error => {
+    console.error
+
+('Error:', error);
+  });
+}
+
