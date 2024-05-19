@@ -7,12 +7,7 @@ app.use(
   })
 );
 app.use(express.json());
-let Array = [
-  {
-    title: "Picnic",
-    id: 1,
-  },
-];
+let Array = [];
 // respond with "hello world" when a GET request is made to the homepage
 app.get("/", (req, res) => {
   res.json(Array);
