@@ -19,6 +19,7 @@ function addTodo(title) {
     title: title,
     id: id,
   };
+  postData(object.title, object.id);
   dataArray.push(object);
   render(dataArray);
 }
@@ -77,12 +78,12 @@ function getAllData() {
 }
 
 //post request
-fetch("http://localhost:3010/add", {
+function postData (title, id) {
+fetch("http://localhost:3010/add/", {
   method: "POST",
   body: JSON.stringify({
-    userId: 1,
-    title: "Fix my bugs",
-    completed: false
+    title: title,
+    id:id 
   }),
   headers: {
     "Content-type": "application/json; charset=UTF-8"
@@ -90,3 +91,4 @@ fetch("http://localhost:3010/add", {
 })
   .then((response) => response.json())
   .then((json) => console.log(json));
+}
