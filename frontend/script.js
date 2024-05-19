@@ -77,7 +77,16 @@ function getAllData() {
 }
 
 //post request
-fetch('http://localhost:3010/title')
-.then(res => {
-  console.log(res);
+fetch("http://localhost:3010/add", {
+  method: "POST",
+  body: JSON.stringify({
+    userId: 1,
+    title: "Fix my bugs",
+    completed: false
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
 })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
