@@ -1,4 +1,3 @@
-
 let btn = document.getElementById("add-todo");
 let title = document.getElementById("input-todo");
 let container = document.getElementById("todo-container");
@@ -55,6 +54,8 @@ function deleteTodo(id) {
     }
   }
   dataArray = arry;
+  deleteResource(dataArray.title, dataArray.id);
+
   render(dataArray);
 }
 
@@ -78,17 +79,34 @@ function getAllData() {
 }
 
 //post request
-function postData (title, id) {
-fetch("http://localhost:3010/add/", {
-  method: "POST",
-  body: JSON.stringify({
-    title: title,
-    id:id 
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
-})
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+function postData(title, id) {
+  fetch("http://localhost:3010/add/", {
+    method: "POST",
+    body: JSON.stringify({
+      title: title,
+      id: id,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
+
+//fetch delete
+
+function deleteResource(title, id) {
+  fetch("http://localhost:3010/delete/", {
+    method: "DELETE",
+    body: JSON.stringify({
+      title: title,
+      id: id,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
 }
