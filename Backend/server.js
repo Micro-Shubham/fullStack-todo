@@ -37,7 +37,7 @@ app.put("/edit", function (req, res) {
   }
 });
 //delete route
-app.delete("/:Id", (req, res) => {
+app.delete("/delete", (req, res) => {
   newArr = [];
   let index = 0;
   let Id = req.params;
