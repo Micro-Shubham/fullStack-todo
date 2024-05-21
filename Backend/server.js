@@ -37,13 +37,14 @@ app.put("/edit", function (req, res) {
   }
 });
 //delete route
-app.delete("/delete", (req, res) => {
+app.delete("/delete/:id", (req, res) => {
   newArr = [];
   let index = 0;
-  let Id = req.params;
+  let Id = req.params.id;
   for (let i = 0; i < Array.length; i++) {
     if (Array[i].id != Id) {
       newArr[index] = Array[i];
+      index++;
     }
   }
   Array = newArr;
