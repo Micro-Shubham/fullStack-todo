@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.json(Array);
 });
 app.post("/add", (req, res) => {
-  console.log("post working")
+  console.log("post working");
   let add = {
     title: req.body.title,
     id: Math.floor(Math.random() * 1000),
@@ -40,17 +40,26 @@ app.put("/edit", function (req, res) {
 app.delete("/del/:id", (req, res) => {
   newArr = [];
   let index = 0;
+  let count = 0;
   let id = req.params.id;
-  for (let i = 0; i < Array.length; i++) {
-    if (Array[i].id != id) {
-      newArr[index] = Array[i];
-      index++;
+  for (let j = 0; j < Array.length; j++) {
+    if (Array[j].id == id) {
+      count++;
+      for (let i = 0; i < Array.length; i++) {
+        if (Array[i].id != id) {
+          newArr[index] = Array[i];
+          index++;
+        }
+      }
     }
   }
   Array = newArr;
-  res.json({
-    msg: "successfully deleted task",
-  });
+
+  if (count == 1) {
+    res.json("Id matched and deleted successfully");
+  } else if(count ==0){
+    res.json("Id didn't match");
+  }
 });
 app.listen(3010, () => {
   console.log(`server is listening at port  ${3010}`);
