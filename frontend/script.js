@@ -47,6 +47,8 @@ container.addEventListener("click", (e) => {
 function deleteTodo(id) {
   let arry = [];
   let index = 0;
+  deleteData(id);
+
   for (let i = 0; i < dataArray.length; i++) {
     if (dataArray[i].id != id) {
       arry[index] = dataArray[i];
@@ -54,7 +56,6 @@ function deleteTodo(id) {
     }
   }
   dataArray = arry;
-  deleteResource(dataArray.title, dataArray.id);
 
   render(dataArray);
 }
@@ -95,18 +96,21 @@ function postData(title, id) {
 }
 
 //fetch delete
+async function deleteData(id) {
+  try {
+    const url = `http://localhost:3010/del/${id}`;
+    const response = await fetch(url, {
+      method: 'DELETE'
+    });
 
-function deleteResource(title, id) {
-  fetch("http://localhost:3010/delete/", {
-    method: "DELETE",
-    body: JSON.stringify({
-      title: title,
-      id: id,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+    if (!response.ok) {
+      throw new Error(`Error with Status Code: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
+
