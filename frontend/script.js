@@ -4,35 +4,37 @@ let container = document.getElementById("todo-container");
 // array for storing data
 let dataArray = [];
 
-getAllData();
+// getAllData();
 //click function
 btn.addEventListener("click", () => {
-  addTodo(title.value);
+  // addTodo(title.value);
+   postData(title.value);
   title.value = "";
+  getAllData()
 });
 
-function addTodo(title) {
-  let id = Math.floor(Math.random() * 10000 + 1);
+// function addTodo(title) {
+  // let id = Math.floor(Math.random() * 10000 + 1);
   // localStorage.setItem(id, title);
-  let object = {
-    title: title,
-    id: id,
-  };
-  postData(object.title, object.id);
-  dataArray.push(object);
-  render(dataArray);
-}
+  // let object = {
+  //   title: title,
+  //   id: id,
+  // };
+  // postData(object.title, object.id);
+  // dataArray.push(object);
+  // render(dataArray);
+// }
 
-function render(todo) {
-  container.innerHTML = "";
-  for (let i = 0; i < todo.length; i++) {
-    let list = todo[i].title;
-    let create = document.createElement("p");
-    create.innerHTML = list;
-    create.id = todo[i].id;
-    container.append(create);
-  }
-}
+// function render(todo) {
+//   container.innerHTML = "";
+//   for (let i = 0; i < todo.length; i++) {
+//     let list = todo[i].title;
+//     let create = document.createElement("p");
+//     create.innerHTML = list;
+//     create.id = todo[i].id;
+//     container.append(create);
+//   }
+// }
 
 container.addEventListener("click", (e) => {
   let ptag = e.target.id;
@@ -40,6 +42,7 @@ container.addEventListener("click", (e) => {
     if (dataArray[i].id == ptag) {
       localStorage.removeItem(ptag);
       deleteTodo(ptag);
+      deleteData(ptag)
     }
   }
 });
@@ -59,6 +62,7 @@ function deleteTodo(id) {
 
   render(dataArray);
 }
+
 
 function getAllData() {
   const apiUrl = "http://localhost:3010/";
@@ -80,12 +84,12 @@ function getAllData() {
 }
 
 //post request
-function postData(title, id) {
+function postData(title) {
   fetch("http://localhost:3010/add/", {
     method: "POST",
     body: JSON.stringify({
       title: title,
-      id: id,
+      // id: 
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -99,6 +103,7 @@ function postData(title, id) {
 async function deleteData(id) {
   try {
     const url = `http://localhost:3010/del/${id}`;
+    console.log(id);
     const response = await fetch(url, {
       method: 'DELETE'
     });
@@ -113,4 +118,3 @@ async function deleteData(id) {
     console.error('Error:', error);
   }
 }
-
