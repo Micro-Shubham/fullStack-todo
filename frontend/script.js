@@ -9,8 +9,9 @@ let dataArray = [];
 btn.addEventListener("click", () => {
   // addTodo(title.value);
    postData(title.value);
+   render(title.value)
   title.value = "";
-  getAllData()
+    getAllData()
 });
 
 // function addTodo(title) {
@@ -25,16 +26,17 @@ btn.addEventListener("click", () => {
   // render(dataArray);
 // }
 
-// function render(todo) {
-//   container.innerHTML = "";
-//   for (let i = 0; i < todo.length; i++) {
-//     let list = todo[i].title;
-//     let create = document.createElement("p");
-//     create.innerHTML = list;
-//     create.id = todo[i].id;
-//     container.append(create);
-//   }
-// }
+function render() {
+  container.innerHTML = "";
+  // for (let i = 0; i < todo.length; i++) {
+    // let list = todo[i].title;
+    let list = getAllData();
+    let create = document.createElement("p");
+    create.innerHTML = list;
+    // create.id = todo[i].id;
+    container.append(create);
+  // }
+}
 
 container.addEventListener("click", (e) => {
   let ptag = e.target.id;
@@ -68,19 +70,21 @@ function getAllData() {
   const apiUrl = "http://localhost:3010/";
 
   // Make a GET request
-  fetch(apiUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  fetch(apiUrl) 
+  .then(response => response.json()) 
+  .then(Array => console.log(Array));
+    // .then((response) => {
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
+    //   return response.json();
+    // })
+    // .then((data) => {
+    //   console.log(data);
+    // })
+    // .catch((error) => {
+    //   console.error("Error:", error);
+    // });
 }
 
 //post request
