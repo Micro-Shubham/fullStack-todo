@@ -6,12 +6,11 @@ let container = document.getElementById("todo-container");
 // array for storing data
 // let dataArray = [];
 
-// getAllData();
 //click function
 btn.addEventListener("click", () => {
   // addTodo(title.value);
-  getAllData();
   postData(title.value);
+  getAllData();
   title.value = "";
 });
 
@@ -112,6 +111,7 @@ function postData(title) {
   })
     .then((response) => response.json())
     .then((json) => console.log(json));
+    console.log(getAllData())
 }
 
 //fetch delete
