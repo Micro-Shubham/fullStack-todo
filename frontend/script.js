@@ -10,8 +10,8 @@ let container = document.getElementById("todo-container");
 //click function
 btn.addEventListener("click", () => {
   // addTodo(title.value);
-  postData(title.value);
   getAllData();
+  postData(title.value);
   title.value = "";
 });
 
@@ -73,12 +73,13 @@ function getAllData() {
   fetch(apiUrl)
     .then((response) => response.json())
     .then((Array) => {
+      container.innerHTML = "";
       Array.forEach((item) => {
-        // if (item[id] == listItem[id]) {
+        let list = item.title;
         let listItem = document.createElement("p");
-        listItem.textContent = `Title:${item.title} , Id: ${item.id}`;
+        listItem.innerHTML = list;
         listItem.id = item.id;
-          container.appendChild(listItem);
+        container.appendChild(listItem);
       });
     })
     .catch((error) => {
