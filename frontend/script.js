@@ -6,7 +6,7 @@ let container = document.getElementById("todo-container");
 // array for storing data
 // let dataArray = [];
 
-  getAllData();
+getAllData();
 //click function
 btn.addEventListener("click", () => {
   // addTodo(title.value);
@@ -39,31 +39,35 @@ btn.addEventListener("click", () => {
 // }
 
 container.addEventListener("click", (e) => {
-  let ptag = e.target.id;
-  for (let i = 0; i < dataArray.length; i++) {
-    if (dataArray[i].id == ptag) {
-      localStorage.removeItem(ptag);
-      deleteTodo(ptag);
-      deleteData(ptag);
-    }
-  }
+  let getId = e.target.id;
+  // for (let i = 0; i < data.length; i++) {
+  //   if (data[i].id == getId) {
+  //     localStorage.removeItem(getId);
+  //     // deleteTodo(getId);
+  //     deleteData(getId);
+
+  //   }
+  // }
+  deleteData(getId);
+
+  
 });
 
-function deleteTodo(id) {
-  let arry = [];
-  let index = 0;
-  deleteData(id);
+// function deleteTodo(id) {
+//   let arry = [];
+//   let index = 0;
+//   deleteData(id);
 
-  for (let i = 0; i < dataArray.length; i++) {
-    if (dataArray[i].id != id) {
-      arry[index] = dataArray[i];
-      index++;
-    }
-  }
-  dataArray = arry;
+//   for (let i = 0; i < dataArray.length; i++) {
+//     if (dataArray[i].id != id) {
+//       arry[index] = dataArray[i];
+//       index++;
+//     }
+//   }
+//   dataArray = arry;
 
-  render(dataArray);
-}
+//   render(dataArray);
+// }
 
 function getAllData() {
   const apiUrl = "http://localhost:3010/";
@@ -111,26 +115,46 @@ function postData(title) {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log(getAllData());
+      console.log(json);
+      getAllData();
     });
 }
 
 //fetch delete
-async function deleteData(id) {
-  try {
-    const url = `http://localhost:3010/del/${id}`;
-    console.log(id);
-    const response = await fetch(url, {
-      method: "DELETE",
+// async function deleteData(id) {
+//   try {
+//     const url = `http://localhost:3010/del/${id}`;
+//     console.log(id);
+//     const response = await fetch(url, {
+//       method: "DELETE",
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`Error with Status Code: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// }
+function deleteData(id) {
+  fetch(`http://localhost:3010/del/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      return getAllData(); // Refresh data after deletion
+    })
+    // .then((data) => {
+    //   console.log(data); // Log the updated data
+    // })
+    .catch((error) => {
+      console.error('Error:', error);
     });
-
-    if (!response.ok) {
-      throw new Error(`Error with Status Code: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error("Error:", error);
-  }
 }
